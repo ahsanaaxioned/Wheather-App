@@ -1,19 +1,19 @@
 <!doctype html>
 <!-- If multi-language site, reconsider usage of html lang declaration here. -->
-<html lang="en"> 
+<html lang="en">
 
 <head>
   <meta charset="utf-8">
-  <title>Client</title>
+  <title>Wheather App</title>
   <!-- View-port Basics: http://mzl.la/VYREaP -->
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <!-- Place favicon.ico in the root directory: mathiasbynens.be/notes/touch-icons -->
   <link rel="shortcut icon" href="favicon.ico" />
   <!--font-awesome link for icons-->
-  <link rel="stylesheet" media="screen" href="assets/vendor/font-awesome/css/all.min.css" >
+  <link rel="stylesheet" media="screen" href="assets/vendor/font-awesome/css/all.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <!-- Default style-sheet is for 'media' type screen (color computer display).  -->
-  <link rel="stylesheet" media="screen" href="assets/css/style.css" >
+  <link rel="stylesheet" media="screen" href="assets/css/style.css">
 </head>
 
 <body>
@@ -21,11 +21,25 @@
   <div class="container">
     <!--main section start-->
     <main>
-
+      <section class="wheather">
+        <div class="wrapper">
+          <h1 class="heading">wheather app</h1>
+          <form action="#FIXME" method="post" class="my-form" name="form">
+            <div class="input-container">
+              <div class="input-group">
+                <input type="text" class="input-content" name="city name" placeholder="enter a city name here...">
+                <span class="error">error</span>
+              </div>
+              <button class="btn">get device location</button>
+            </div>
+          </form>
+        </div>
+      </section>
     </main>
     <!--main section end-->
   </div>
   <!--container end-->
   <script src="assets/js/script.js"></script>
 </body>
+
 </html>
