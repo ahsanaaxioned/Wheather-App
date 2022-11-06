@@ -7,13 +7,87 @@
    v2.0 | 20110126
    License: none (public domain)
    ========================================================================== */
-html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p,
-blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img,
-ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center,
-dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody,
-tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure,
-figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
   margin: 0;
   padding: 0;
   border: 0;
@@ -23,17 +97,30 @@ time, mark, audio, video {
 }
 
 /* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section {
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
   display: block;
 }
 
 /* Force scrollbar */
-html { overflow-y: scroll; }
+html {
+  overflow-y: scroll;
+}
 
 /* Align radios and text inputs with their label */
 
-input[type='radio'] { vertical-align: text-bottom; }
+input[type='radio'] {
+  vertical-align: text-bottom;
+}
 
 /* Hand cursor on clickable input elements */
 label,
@@ -49,7 +136,9 @@ strong {
   font-size: inherit;
 }
 
-em { font-style: italic; }
+em {
+  font-style: italic;
+}
 
 img {
   width: 100%;
@@ -65,8 +154,13 @@ sup {
   line-height: 0;
 }
 
-sup { top: -.7em; }
-sub { bottom: -.25em; }
+sup {
+  top: -.7em;
+}
+
+sub {
+  bottom: -.25em;
+}
 
 /* 1.2. Clear Fix
    ========================== */
@@ -77,8 +171,13 @@ sub { bottom: -.25em; }
   content: " ";
 }
 
-.cf:after { clear: both; }
-.cf { *zoom: 1; }
+.cf:after {
+  clear: both;
+}
+
+.cf {
+  *zoom: 1;
+}
 
 /*for all*/
 body {
@@ -86,9 +185,9 @@ body {
   font-family: sans-serif;
 }
 
-a { 
+a {
   display: inline-block;
-  text-decoration: none; 
+  text-decoration: none;
 }
 
 li {
@@ -99,7 +198,7 @@ li {
 /*for wrapper*/
 .wrapper {
   max-width: 1360px;
-  width: 86%; 
+  width: 86%;
   margin: 0 auto;
 }
 
@@ -108,22 +207,120 @@ li {
   padding: 0;
   margin: 0;
   text-transform: capitalize;
-} 
+}
 
 :root {
-  --primary-color:#43AFFC;
-  --secodary-clor:#ccc;
-  --white:#fff;
-  --black:#000;
-  --error:#F8D7DA;
-  --success:#0c5460;
+  --primary-color: #0691f4;
+  --secodary-clor: #ccc;
+  --white: #fff;
+  --black: #000;
+  --error: #f8061b;
+  --success: #05eb8b;
 }
+
 /*=================================
   main styling starts here
 =================================*/
+.wheather {
+  background: url(https://images.unsplash.com/photo-1631205870679-9946c2265a96?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1472&q=80/1600x900/);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0.9;
+}
 
+.wrapper { min-height: 100vh; }
 
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
+.search {
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.input-group {
+  margin-bottom: 44px;
+  display: flex;
+  flex-direction: column;
+}
+
+.search {
+  padding: 25px 5%;
+  border-radius: 8px;
+  background-color: var(--black);
+  color: var(--white);
+  opacity: .75;
+}
+
+.heading {
+  padding-bottom: 25px;
+  display: block;
+  position: relative;
+  color: var(--white);
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.wrapper.active .heading::before {
+  content: "\f104";
+  position: absolute;
+  top: 1px;
+  left: -20px;
+  font-family: "FontAwesome";
+}
+
+.input-content {
+  padding: 7px 3%;
+  border: 2px solid var(--secodary-clor);
+  border-radius: 8px;
+  font-size: 18px;
+  outline: none;
+  transition: all .3s ease-in-out;
+}
+
+.input-content.fail { border-color: var(--error); }
+.input-content.success { border-color: var(--success); }
+.input-content:focus { border: 2px solid var(--primary-color); }
+
+.error {
+  font-size: 14px;
+  visibility: hidden;
+}
+
+.error.fail {
+  color: var(--error);
+  visibility: visible;
+}
+
+.error.success {
+  color: var(--success);
+  visibility: visible;
+}
+
+.btn {
+  padding: 7px 12.7%;
+  border: 2px solid var(--primary-color);
+  border-radius: 8px;
+  margin-bottom: 10px;
+  position: relative;
+  background: var(--primary-color);
+  color: var(--white);
+  font-size: 18px;
+}
+
+.btn::before {
+  content: "OR";
+  position: absolute;
+  top: -40px;
+  left: 43%;
+  color: var(--white);
+  font-size: 20px;
+  font-weight: 600;
+}
 
 
 /*=================================
@@ -131,8 +328,4 @@ li {
 =================================*/
 /*media query starts*/
 /*media query for 995px starts here*/
-@media only screen and (max-width: 995px) {
-
-
-
-}  
+@media only screen and (max-width: 995px) {}
