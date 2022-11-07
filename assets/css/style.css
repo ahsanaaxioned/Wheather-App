@@ -310,6 +310,13 @@ li {
   background: var(--primary-color);
   color: var(--white);
   font-size: 18px;
+  transition: all .3s ease-in-out;
+}
+
+.btn:hover {
+  color: var(--primary-color);
+  background-color: var(--white);
+  border-color: var(--primary-color);
 }
 
 .btn::before {
@@ -322,6 +329,27 @@ li {
   font-weight: 600;
 }
 
+.wrapper.active .my-form { display: none; }
+.show-weather { display: none; }
+
+.wrapper.active .show-weather {
+  display: flex;
+  flex-direction: column;
+}
+
+.wheather-heading {
+  margin: 5px 0 20px 0;
+  color: var(--white);
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.temp ,
+.description,
+.humidity {
+  margin-bottom: 20px;
+  font-size: 18px;
+}
 
 /*=================================
   main styling ends here
