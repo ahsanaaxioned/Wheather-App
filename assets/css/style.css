@@ -236,13 +236,13 @@ li {
    padding: 25px 5%;
    border-radius: 8px;
    margin: 0 38%;
+   flex-direction: column;
    background-color: var(--black);
    color: var(--white);
    opacity: .75;
-   flex-direction: column;
  }
 
- .wrapper.active { margin: 0px 31%; }
+ .wrapper.active { margin: 0 31%; }
 
 .flex {
   display: flex;
@@ -308,7 +308,7 @@ li {
 }
 
 .btn {
-  padding: 7px 12.7%;
+  padding: 7px 14.7%;
   border: 2px solid var(--primary-color);
   border-radius: 8px;
   margin-bottom: 10px;
@@ -372,14 +372,22 @@ li {
 @media only screen and (max-width: 995px) {
   .wrapper.active { margin: 0 29%; }
 }
+/*media query for 995px end here*/
+
+/*media query for 768px starts here*/
 @media only screen and (max-width: 768px) {
   .wrapper { margin: 0 28%; }
   .wrapper.active { margin: 0 18%; }
 }
+/*media query for 995px end here*/
+
+/*media query for 480px starts here*/
 @media only screen and (max-width: 480px) {
-  .wrapper{ 
+  .wrapper { 
     margin: 0 7%;
     overflow: hidden;
   }
-  .wrapper.active{ margin: 0 7%; }
+
+  .wrapper.active { margin: 0 7%; }
 }
+/*media query for 480px end here*/
