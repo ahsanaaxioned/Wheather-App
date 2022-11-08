@@ -222,6 +222,9 @@ li {
   main styling starts here
 =================================*/
 .wheather {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
   background: url(https://images.unsplash.com/photo-1631205870679-9946c2265a96?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1472&q=80/1600x900/);
   background-position: center;
   background-repeat: no-repeat;
@@ -229,7 +232,17 @@ li {
   opacity: 0.9;
 }
 
-.wrapper { min-height: 100vh; }
+.wrapper {
+   padding: 25px 5%;
+   border-radius: 8px;
+   margin: 0 38%;
+   background-color: var(--black);
+   color: var(--white);
+   opacity: .75;
+   flex-direction: column;
+ }
+
+ .wrapper.active { margin: 0px 31%; }
 
 .flex {
   display: flex;
@@ -246,14 +259,6 @@ li {
   margin-bottom: 44px;
   display: flex;
   flex-direction: column;
-}
-
-.search {
-  padding: 25px 5%;
-  border-radius: 8px;
-  background-color: var(--black);
-  color: var(--white);
-  opacity: .75;
 }
 
 .wrapper.active .search { padding: 20px 7%; }
@@ -364,4 +369,17 @@ li {
 =================================*/
 /*media query starts*/
 /*media query for 995px starts here*/
-@media only screen and (max-width: 995px) {}
+@media only screen and (max-width: 995px) {
+  .wrapper.active { margin: 0 29%; }
+}
+@media only screen and (max-width: 768px) {
+  .wrapper { margin: 0 28%; }
+  .wrapper.active { margin: 0 18%; }
+}
+@media only screen and (max-width: 480px) {
+  .wrapper{ 
+    margin: 0 7%;
+    overflow: hidden;
+  }
+  .wrapper.active{ margin: 0 7%; }
+}
