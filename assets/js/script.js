@@ -5,29 +5,29 @@ const form = document.querySelector(".my-form"),
   searchDiv = document.querySelector(".search"),
   input = document.querySelector(".input-content"),
   inputContent = document.querySelector(".input-content"),
-
   heading = document.querySelector(".heading"),
   error = document.querySelector(".error"),
   apiKey = `bdea81d390362a49874c43a13fcf6056`;
-let removeappend;
 // global variable declaration end here
 
 // form event start here
-form.addEventListener("click", (e) => {
+input.addEventListener("keypress", (e) => {
   e.preventDefault();
   const inputVal = input.value;
-  if (inputVal === "") {
-    error.innerText = "*please enter a city name";
-    error.classList.add("fail");
-    inputContent.classList.add("fail");
-  } else {
-    error.innerText = "getting wheathering details";
-    error.classList.remove("fail");
-    inputContent.classList.remove("fail");
-    error.classList.add("success");
-    setTimeout(function () {
-      getWheather(inputVal);
-    }, 500);
+  if(e.key=="Enter"){
+    if (inputVal === "") {
+      error.innerText = "*please enter a city name";
+      error.classList.add("fail");
+      inputContent.classList.add("fail");
+    } else {
+      error.innerText = "getting wheathering details";
+      error.classList.remove("fail");
+      inputContent.classList.remove("fail");
+      error.classList.add("success");
+      setTimeout(function () {
+        getWheather(inputVal);
+      }, 500);
+    }
   }
 });
 // form event end here
