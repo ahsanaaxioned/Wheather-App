@@ -222,6 +222,9 @@ li {
   main styling starts here
 =================================*/
 .wheather {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
   background: url(https://images.unsplash.com/photo-1631205870679-9946c2265a96?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1472&q=80/1600x900/);
   background-position: center;
   background-repeat: no-repeat;
@@ -229,7 +232,17 @@ li {
   opacity: 0.9;
 }
 
-.wrapper { min-height: 100vh; }
+.wrapper {
+   padding: 25px 5%;
+   border-radius: 8px;
+   margin: 0 38%;
+   flex-direction: column;
+   background-color: var(--black);
+   color: var(--white);
+   opacity: .75;
+ }
+
+ .wrapper.active { margin: 0 31%; }
 
 .flex {
   display: flex;
@@ -248,13 +261,7 @@ li {
   flex-direction: column;
 }
 
-.search {
-  padding: 25px 5%;
-  border-radius: 8px;
-  background-color: var(--black);
-  color: var(--white);
-  opacity: .75;
-}
+.wrapper.active .search { padding: 20px 7%; }
 
 .heading {
   padding-bottom: 25px;
@@ -269,7 +276,7 @@ li {
   content: "\f104";
   position: absolute;
   top: 1px;
-  left: -20px;
+  left: -25px;
   font-family: "FontAwesome";
 }
 
@@ -284,7 +291,6 @@ li {
 
 .input-content.fail { border-color: var(--error); }
 .input-content.success { border-color: var(--success); }
-.input-content:focus { border: 2px solid var(--primary-color); }
 
 .error {
   font-size: 14px;
@@ -302,7 +308,7 @@ li {
 }
 
 .btn {
-  padding: 7px 12.7%;
+  padding: 7px 14.7%;
   border: 2px solid var(--primary-color);
   border-radius: 8px;
   margin-bottom: 10px;
@@ -346,9 +352,16 @@ li {
 
 .temp ,
 .description,
+.wind-speed,
 .humidity {
   margin-bottom: 20px;
-  font-size: 18px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.icon {
+  width: 40%;
+  filter:brightness(5.5);
 }
 
 /*=================================
@@ -356,4 +369,25 @@ li {
 =================================*/
 /*media query starts*/
 /*media query for 995px starts here*/
-@media only screen and (max-width: 995px) {}
+@media only screen and (max-width: 995px) {
+  .wrapper.active { margin: 0 29%; }
+}
+/*media query for 995px end here*/
+
+/*media query for 768px starts here*/
+@media only screen and (max-width: 768px) {
+  .wrapper { margin: 0 28%; }
+  .wrapper.active { margin: 0 18%; }
+}
+/*media query for 995px end here*/
+
+/*media query for 480px starts here*/
+@media only screen and (max-width: 480px) {
+  .wrapper { 
+    margin: 0 7%;
+    overflow: hidden;
+  }
+
+  .wrapper.active { margin: 0 7%; }
+}
+/*media query for 480px end here*/
