@@ -11,10 +11,10 @@ const form = document.querySelector(".my-form"),
 // global variable declaration end here
 
 // form event start here
-input.addEventListener("keypress", (e) => {
+input.addEventListener("keyup", (e) => {
   e.preventDefault();
   const inputVal = input.value;
-  if(e.key=="Enter"){
+  if(e.key == "Enter"){
     if (inputVal === "") {
       error.innerText = "*please enter a city name";
       error.classList.add("fail");
@@ -38,47 +38,56 @@ function getWheather(city) {
     .then(function (response) {
       if (response.status === 404) {
         errorApper();
-      } else {
+      } 
+      if (response.status === 200) {
         return response.json();
       }
     })
     .then(function (data) {
       // retuning data to show
-      return showWheather(data);
+      showWheather(data);
     });
 };
 // API fetch end here
 // function for showing wheather data start here
 const dataShow = document.createElement("div");
 dataShow.className = "show-weather";
+
+// function for append data for both API start here
+function creatData(appendData){
+dataShow.innerHTML = `<h2 class="wheather-heading">wheather in ${appendData.name.toLowerCase()} </h2>
+<h3 class="temp">${Math.floor(appendData.main.temp)} °C</h3> <div class="icon-content">
+<img src="https://openweathermap.org/img/wn/${appendData.weather[0].icon}.png" alt="wheather Icon" class="icon">
+<span class="description">${appendData.weather[0].main}</span></div>
+<span class="humidity">humidity: ${appendData.main.humidity}%</span>
+<span class="wind-speed">wind speed: ${appendData.wind.speed} km/hour</span>`;
+};
+// function for append data for both API end here
+
 function showWheather(data) {
+  if(data){
   if (input.value.toLowerCase() === data.name.toLowerCase()) {
     const removedataShow = document.querySelector(".show-weather");
     if(removedataShow){
       removedataShow.parentElement.removeChild(removedataShow)
     }
-    dataShow.innerHTML = `<h2 class="wheather-heading">wheather in ${data.name.toLowerCase()} </h2>
-  <h3 class="temp">${Math.floor(data.main.temp)} °C</h3> <div class="icon-content">
-  <img src="https://openweathermap.org/img/wn/${data.weather[0].icon}.png" alt="wheather Icon" class="icon">
-  <span class="description">${data.weather[0].main}</span></div>
-  <span class="humidity">humidity: ${data.main.humidity}%</span>
-  <span class="wind-speed">wind speed: ${data.wind.speed} km/hour</span>`;
+    creatData(data);
     wrapper.appendChild(dataShow);
     wrapper.classList.add("active");
     inputContent.classList.add("success");
+    // changing background according to temp 
     if (data.main.temp > 30) {
       wheatherSection.style.backgroundImage = 'url("https://www.vmcdn.ca/f/files/sudbury/uploadedImages/SUMMER_sunWater.jpg;w=960/1600x900/")';
     }
     if (data.main.temp <= 30) {
-      console.log(data.main.temp);
       wheatherSection.style.backgroundImage = 'url("https://images.unsplash.com/photo-1585088767603-ee684c611b0c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80/1600x900/")';
     }
   } else {
     errorApper();
-    wheatherSection.style.backgroundImage = "";
   }
-// changing background according to temp 
+}
 };
+
 // function for showing error if response not found
 function errorApper() {
   error.innerText = "*" + input.value + " is not a valid city name";
@@ -122,8 +131,12 @@ function showSuccces(position) {
 function fetchGeoapi(geoapi) {
   fetch(geoapi)
     .then(function (response) {
-      return response.json();
-      console.log(response.json());
+      if (response.status === 404) {
+        errorApper();
+      } 
+      if (response.status === 200) {
+        return response.json();
+      }
     })
     .then(function (info) {
       // retuning info to show
@@ -131,19 +144,11 @@ function fetchGeoapi(geoapi) {
     });
 }
 function showGeo(info) {
-  const dataShow = document.createElement("div"),
   removedataShow = document.querySelector(".show-weather");
-  dataShow.className = "show-weather";
-
   if(removedataShow){
     removedataShow.parentElement.removeChild(removedataShow);
   }
-    dataShow.innerHTML = `<h2 class="wheather-heading">wheather in ${info.name} </h2>
-  <h3 class="temp">${Math.floor(info.main.temp)} °C</h3> <div class="icon-content">
-  <img src="https://openweathermap.org/img/wn/${info.weather[0].icon}.png" alt="wheather Icon" class="icon">
-  <span class="description">${info.weather[0].main}</span></div>
-  <span class="humidity">humidity: ${info.main.humidity}%</span>
-  <span class="wind-speed">wind speed: ${info.wind.speed} km/hour</span>`;
+  creatData(info);
   wrapper.classList.add('active');
   wrapper.appendChild(dataShow);
   error.classList.remove("fail");
