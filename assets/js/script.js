@@ -64,15 +64,15 @@ function showWheather(data) {
     wrapper.appendChild(dataShow);
     wrapper.classList.add("active");
     inputContent.classList.add("success");
+  } else {
+    errorApper();
   }
+
   if (data.main.temp > 30) {
-    console.log(wheatherSection.style.backgroundImage);
     wheatherSection.style.backgroundImage = 'url("https://www.vmcdn.ca/f/files/sudbury/uploadedImages/SUMMER_sunWater.jpg;w=960/1600x900/")';
   }
   if (data.main.temp <= 30) {
-    wheatherSection.style.backgroundImage = 'url("https://images.unsplash.com/photo-1611928482473-7b27d24eab80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80/1600x900/")';
-  }else {
-    errorApper();
+    wheatherSection.style.backgroundImage = 'url("https://images.unsplash.com/photo-1585088767603-ee684c611b0c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80/1600x900/")';
   }
 };
 
