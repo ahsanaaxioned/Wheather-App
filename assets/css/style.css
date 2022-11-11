@@ -183,6 +183,7 @@ sub {
 body {
   box-sizing: border-box;
   font-family: sans-serif;
+  overflow: hidden;
 }
 
 a {
@@ -232,27 +233,35 @@ li {
   opacity: 0.9;
 }
 
-.wrapper {
-   padding: 25px 5%;
-   border-radius: 8px;
-   margin: 0 38%;
-   flex-direction: column;
-   background-color: var(--black);
-   color: var(--white);
-   opacity: .75;
+.wheather .wrapper {
+  padding: 25px 5%;
+  border-radius: 8px;
+  margin: 0 23%;
+  flex-direction: column;
+  background-color: var(--black);
+  color: var(--white);
+  opacity: .75;
  }
 
- .wrapper.active { margin: 0 31%; }
+ .wheather .wrapper.active { margin: 0 25%; }
+ .wheather .wrapper.active .my-form,
+ .wheather .wrapper.active .input-group { margin: 0; }
 
 .flex {
-  display: flex;
+    display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .search {
-  align-items: flex-start;
+  width: 100%;
   flex-direction: column;
+  position: relative;
+}
+
+.my-form { 
+  width: 100%;
+  margin: 30px 0;
 }
 
 .input-group {
@@ -261,36 +270,68 @@ li {
   flex-direction: column;
 }
 
-.wrapper.active .search { padding: 20px 7%; }
+.sub-control {
+  display: flex;
+  justify-content: space-between;
+}
+
+.input-submit {  flex-basis: 23%; }
+.input-search { flex-basis: 70%; }
+
+.sub-btn {
+  width: 100%;
+  padding: 5px 2%;
+  margin-left: 13px;
+  border: 2px solid var(--primary-color);
+  border-radius: 8px;
+  background: var(--primary-color);
+  color: var(--white);
+  font-size: 25px;
+  font-weight: 600;
+  transition: all .3s ease-in-out;
+}
+.sub-btn:hover {
+  border-color: var(--primary-color);
+  background-color: var(--white);
+  color: var(--primary-color);
+}
+
+.wheather .wrapper.active .search { padding: 20px 7%; }
+.wheather .wrapper.active .btn { display: none;}
 
 .heading {
   padding-bottom: 25px;
   display: block;
-  position: relative;
   color: var(--white);
-  font-size: 30px;
+  font-size: 40px;
   font-weight: 700;
 }
 
-.wrapper.active .heading::before {
+.back { text-indent: -9999px; }
+
+.wheather .wrapper.active .back::before {
   content: "\f104";
   position: absolute;
   top: 1px;
   left: -25px;
   font-family: "FontAwesome";
+  text-indent: 0;
+  font-size: 45px;
+  cursor: pointer;
 }
 
 .input-content {
+  width: 100%;
   padding: 7px 3%;
   border: 2px solid var(--secodary-clor);
   border-radius: 8px;
   font-size: 18px;
   outline: none;
   transition: all .3s ease-in-out;
+  flex-basis: 70%;
 }
 
 .input-content.fail { border-color: var(--error); }
-.input-content.success { border-color: var(--success); }
 
 .error {
   font-size: 14px;
@@ -302,40 +343,36 @@ li {
   visibility: visible;
 }
 
-.error.success {
-  color: var(--success);
-  visibility: visible;
-}
-
 .btn {
+  width: 100%;
   padding: 7px 14.7%;
   border: 2px solid var(--primary-color);
   border-radius: 8px;
-  margin-bottom: 10px;
+  margin-bottom: 40px;
   position: relative;
   background: var(--primary-color);
   color: var(--white);
-  font-size: 18px;
+  font-size: 22px;
   transition: all .3s ease-in-out;
 }
 
 .btn:hover {
-  color: var(--primary-color);
-  background-color: var(--white);
   border-color: var(--primary-color);
+  background-color: var(--white);
+  color: var(--primary-color);
 }
 
 .btn::before {
   content: "OR";
   position: absolute;
-  top: -40px;
+  top: -61px;
   left: 43%;
   color: var(--white);
-  font-size: 20px;
+  font-size: 30px;
   font-weight: 600;
 }
 
-.wrapper.active .my-form { display: none; }
+/* .wrapper.active .my-form { display: none; } */
 .show-weather { display: none; }
 
 .wrapper.active .show-weather {
@@ -368,26 +405,45 @@ li {
   main styling ends here
 =================================*/
 /*media query starts*/
-/*media query for 995px starts here*/
+/* media query for 995px starts here */
 @media only screen and (max-width: 995px) {
-  .wrapper.active { margin: 0 29%; }
-}
-/*media query for 995px end here*/
+  .wheather .wrapper { margin: 0 20%; }
+  .wheather .wrapper.active { margin: 0 18%}
 
-/*media query for 768px starts here*/
-@media only screen and (max-width: 768px) {
-  .wrapper { margin: 0 28%; }
-  .wrapper.active { margin: 0 18%; }
-}
-/*media query for 995px end here*/
-
-/*media query for 480px starts here*/
-@media only screen and (max-width: 480px) {
-  .wrapper { 
-    margin: 0 7%;
-    overflow: hidden;
+  .wheather .wrapper.active .back::before {
+    top: -13px;
+    left: -15px;
   }
+ 
+} 
+/* media query for 995px end here */
 
-  .wrapper.active { margin: 0 7%; }
+/* media query for 768px starts here */
+ @media only screen and (max-width: 768px) {
+  .wheather .wrapper { margin: 0 7%; }
+  .wheather .wrapper.active { margin: 0 7%}
+  .wheather .wrapper.active .back::before {
+    top: -12px;
+    left: -6px;
+  }
+} 
+/*media query for 768px end here*/
+
+/* media query for 480px starts here */
+ @media only screen and (max-width: 480px) {
+  .heading { font-size: 30px; }
+  .sub-control { flex-direction: column; }
+  .input-search { margin-bottom: 25px; }
+  .sub-btn { margin: 0; }
+  .btn { font-size: 18px; }
+  .input-group { margin-bottom: 35px; }
+  .wheather .wrapper.active { padding: 0 5%; }
+  .wheather .wrapper.active .heading { font-size: 26px; }
+  .wheather .wrapper.active .back::before {
+    top: -2px;
+    left: -4px;
 }
+
+  .temp, .description, .wind-speed, .humidity { font-size: 16px; }
+} 
 /*media query for 480px end here*/
