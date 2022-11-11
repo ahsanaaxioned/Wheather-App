@@ -4,16 +4,15 @@ const form = document.querySelector(".my-form"),
   wrapper = document.querySelector(".wrapper"),
   input = document.querySelector(".input-content"),
   inputContent = document.querySelector(".input-content"),
-  heading = document.querySelector(".heading"),
+  back = document.querySelector(".back"),
   error = document.querySelector(".error"),
   apiKey = `bdea81d390362a49874c43a13fcf6056`;
 // global variable declaration end here
 
 // input event start here
-input.addEventListener("keyup", (e) => {
+form.addEventListener("submit", (e) => {
   e.preventDefault();
   const inputVal = input.value;
-  if (e.key == "Enter") {
     if (inputVal === "") {
       error.innerText = "*please enter a city name";
       error.classList.add("fail");
@@ -22,37 +21,33 @@ input.addEventListener("keyup", (e) => {
       error.innerText = "getting wheathering details";
       error.classList.remove("fail");
       inputContent.classList.remove("fail");
-      error.classList.add("success");
-      setTimeout(function () {
         getWheather(inputVal);
-      }, 500);
+    }
+});
+// event for form end here
+
+// API fetch start here
+// getWheather();
+function getWheather(city) {
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`,
+  xmlhttp = new XMLHttpRequest;
+  xmlhttp.onreadystatechange = function (){
+    try{
+      if(this.readyState == 4 && this.status == 200){
+        data = JSON.parse(this.response);
+        showWheather(data);
+       
+      }else if (this.status == 404){
+         data =  JSON.parse(this.response);
+        throw city +" "+data.message;
+      }
+    }catch(er){
+      errorApper(er);
     }
   }
-});
-// event for form start here
-form.addEventListener("submit", (e) => {
-  e.preventDefault();
-});
-// event for form start here
-
-// input event end here
-// API fetch start here
-function getWheather(city) {
-  const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-  fetch(url)
-    .then(function (response) {
-      if (response.status === 404) {
-        errorApper();
-      }
-      if (response.status === 200) {
-        return response.json();
-      }
-    })
-    .then(function (data) {
-      // retuning data to show
-      showWheather(data);
-    });
-};
+  xmlhttp.open('GET',url);
+  xmlhttp.send();
+}
 // API fetch end here
 // function for showing wheather data start here
 const dataShow = document.createElement("div");
@@ -68,10 +63,9 @@ function creatData(appendData) {
 <span class="wind-speed">wind speed: ${appendData.wind.speed} km/hour</span>`;
 };
 // function for append data for both API end here
-
 function showWheather(data) {
   if (data) {
-    if (input.value.toLowerCase() === data.name.toLowerCase()) {
+    if (data.name.toLowerCase()) {
       const removedataShow = document.querySelector(".show-weather");
       if (removedataShow) {
         removedataShow.parentElement.removeChild(removedataShow)
@@ -87,23 +81,20 @@ function showWheather(data) {
       if (data.main.temp <= 30) {
         wheatherSection.style.backgroundImage = 'url("https://images.unsplash.com/photo-1585088767603-ee684c611b0c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80/1600x900/")';
       }
-    } else {
-      errorApper();
     }
   }
 };
 
 // function for showing error if response not found
-function errorApper() {
-  error.innerText = "*" + input.value + " is not a valid city name";
-  error.classList.remove("success");
+function errorApper(er) {
+  error.innerText = "*" + er;
   wrapper.classList.remove("active")
   error.classList.add("fail");
   inputContent.classList.add("fail");
 };
 // function for showing wheather data end here
 // event for home page start here
-heading.addEventListener("click", () => {
+back.addEventListener("click", () => {
   wheatherSection.style.backgroundImage = "";
   wrapper.classList.remove("active");
   dataShow.remove();
@@ -131,23 +122,22 @@ function showSuccces(position) {
   // getting latitude and longitude data from user device
   const { latitude, longitude } = position.coords;
   let geoapi = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`
-  fetchGeoapi(geoapi);
-}
-
-function fetchGeoapi(geoapi) {
-  fetch(geoapi)
-    .then(function (response) {
-      if (response.status === 404) {
-        errorApper();
+  const geoxmlhttp = new XMLHttpRequest;
+  geoxmlhttp.onreadystatechange = function (){
+    try{
+      if(this.readyState == 4 && this.status == 200){
+        info = JSON.parse(this.response);
+        showGeo(info);
+      }else if (this.status==404){
+         info =  JSON.parse(this.response);
+        throw city +" "+data.message;
       }
-      if (response.status === 200) {
-        return response.json();
-      }
-    })
-    .then(function (info) {
-      // retuning info to show
-      showGeo(info);
-    });
+    }catch(er){
+      errorApper(er);
+    }
+  }
+  geoxmlhttp.open('GET',geoapi);
+  geoxmlhttp.send();
 };
 // Geolocation API fetch end here
 
@@ -171,5 +161,3 @@ function showGeo(info) {
   }
 };
 // showing and append data of Geolocation end here
-
-
